@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="movie_name_size">35sp</dimen>
+    <dimen name="movie_name_background_size">100dp</dimen>
+    <dimen name="movie_synopsis_size">22sp</dimen>
+    <dimen name="small_text_size">18sp</dimen>
+    <dimen name="padding_high_size">20dp</dimen>
+    <dimen name="padding_low_size">8dp</dimen>
+</resources>
