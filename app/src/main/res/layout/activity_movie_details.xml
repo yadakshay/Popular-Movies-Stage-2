@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/movieName"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryLight"
         android:textSize="@dimen/movie_name_size"
         android:layout_gravity="center_vertical"/>
     </FrameLayout>
@@ -44,6 +44,11 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/small_text_size"
                 android:id="@+id/userRatingView"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/add_button_name"
+                android:onClick="addToFav"/>
         </LinearLayout>
 
     </LinearLayout>

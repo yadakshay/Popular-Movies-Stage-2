@@ -20,6 +20,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MovieDetailsActivity" android:parentActivityName=".MainActivity"/>
+
+        <provider
+            android:authorities="com.example.android.popularmovies1"
+            android:name="com.example.android.popularmovies1.data.movieDbContentProvider"
+            android:exported="false"></provider>
     </application>
 
 </manifest>

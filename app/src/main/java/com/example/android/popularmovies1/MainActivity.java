@@ -2,6 +2,7 @@ package com.example.android.popularmovies1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //setContentView(R.layout.tester);
         /* check if there is a network connection*/
         ConnectivityManager connectivityManager =
                 (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -36,15 +37,11 @@ public class MainActivity extends AppCompatActivity {
         boolean isConnected = networkInfo != null && networkInfo.isConnectedOrConnecting();
 
         if (isConnected) {
-
+            new movieQueryTask().execute(sortBy);
+        }else{
+            sortBy ="favorites";
             new movieQueryTask().execute(sortBy);
 
-
-        }else{
-            ProgressBar loading = (ProgressBar) findViewById(R.id.loading_spinner);
-            loading.setVisibility(View.GONE);
-            mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
-            mEmptyStateTextView.setVisibility(View.VISIBLE);
         }
 
     }
@@ -55,7 +52,14 @@ public class MainActivity extends AppCompatActivity {
         protected ArrayList<movieDetails> doInBackground(String... params) {
             String queryURLString = params[0];
             ArrayList<movieDetails> capturedList = null;
-            capturedList = NetworkUtils.getMovies(queryURLString); // returns the movie list in form of a custom movieDetails class
+            if(queryURLString.equals("favorites")){
+                Cursor cursor = favMovieDisplay.getAllFav(getBaseContext());
+                if(cursor.getCount() > 0) {
+                    capturedList = favMovieDisplay.extractFromCursor(cursor);
+                }else{capturedList = null;}
+            }else {
+                capturedList = NetworkUtils.getMovies(queryURLString); // returns the movie list in form of a custom movieDetails class
+            }
             return capturedList;
         }
 
@@ -84,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 });
+            } else {
+                    movieGrid.setVisibility(View.GONE);
+                    mEmptyStateTextView = (TextView) findViewById(R.id.empty_view);
+                    mEmptyStateTextView.setVisibility(View.VISIBLE);
             }
         }
     }
@@ -108,7 +116,11 @@ public class MainActivity extends AppCompatActivity {
             new movieQueryTask().execute(sortBy);
             return true;
         }
-
+        if (id == R.id.favorites) {
+            sortBy = "favorites";
+            new movieQueryTask().execute(sortBy);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 }

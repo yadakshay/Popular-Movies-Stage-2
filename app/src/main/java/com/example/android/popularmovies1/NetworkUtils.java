@@ -76,7 +76,8 @@ public class NetworkUtils {
                     String movieOverview = m.getString("overview");
                     String releaseDate = m.getString("release_date");
                     double userRating = m.getDouble("vote_average");
-                    movies.add(new movieDetails(movieTitle, imageTitle, movieOverview, releaseDate, userRating));
+                    String movieId = m.getString("id");
+                    movies.add(new movieDetails(movieTitle, imageTitle, movieOverview, releaseDate, userRating, movieId));
                 }
             } catch (JSONException e) {
                 Log.e("QueryUtils", "Problem parsing JSON results", e);
