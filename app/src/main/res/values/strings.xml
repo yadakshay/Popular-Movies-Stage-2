@@ -6,4 +6,6 @@
     <string name="order_by_rating">Order by Top Rated</string>
     <string name="add_button_name">Add/Remove from Fav</string>
     <string name="display_fav">Favorites</string>
+    <string name="review">Reviews: </string>
+    <string name="noReview">No reviews available </string>
 </resources>

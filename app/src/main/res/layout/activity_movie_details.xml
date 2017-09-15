@@ -9,7 +9,8 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/movie_name_background_size"
-        android:background="@color/colorAccent">
+        android:background="@color/colorAccent"
+        android:paddingLeft="@dimen/padding_low_size">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -58,7 +59,34 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/movie_synopsis_size"
         android:id="@+id/synopsisView"
-        android:paddingTop="@dimen/padding_high_size"/>
+        android:paddingTop="@dimen/padding_high_size"
+        android:paddingBottom="@dimen/padding_high_size"
+        android:paddingLeft="@dimen/padding_small_size"
+        android:paddingRight="@dimen/padding_small_size"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorAccent"
+        android:layout_marginLeft="@dimen/padding_small_size"
+        android:layout_marginRight="@dimen/padding_small_size"></View>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_title_size"
+        android:paddingTop="@dimen/padding_high_size"
+        android:text="@string/review"
+        android:textColor="@color/colorPrimaryDark"
+        android:paddingLeft="@dimen/padding_small_size"
+        android:paddingRight="@dimen/padding_small_size"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/movie_synopsis_size"
+        android:id="@+id/movieReviews"
+        android:paddingBottom="@dimen/padding_high_size"
+        android:textColor="@color/colorPrimaryDark"
+        android:paddingLeft="@dimen/padding_small_size"
+        android:paddingRight="@dimen/padding_small_size"/>
 </LinearLayout>
 </ScrollView>

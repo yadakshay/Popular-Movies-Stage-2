@@ -2,9 +2,11 @@ package com.example.android.popularmovies1;
 
 import android.content.ContentValues;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager.LoaderCallbacks;
+import android.support.v4.content.AsyncTaskLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,16 +14,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.popularmovies1.data.favMoviesContract;
-import com.example.android.popularmovies1.data.movieDbHelper;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import static com.example.android.popularmovies1.MainActivity.passDetailsObject;
 
-public class MovieDetailsActivity extends AppCompatActivity {
+public class MovieDetailsActivity extends AppCompatActivity implements
+        LoaderCallbacks<ArrayList<ArrayList<String>>>{
     private static String POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
     private static String RELEASE_DATE = "Release Date: ";
     private static String USER_RATING ="User Rating: ";
-    private static SQLiteDatabase mDb;
+    private static final int DETAILS_LOADER_ID = 1004;
+    private static final String MOVIE_ID_KEY = "movieIdKey";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +47,11 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         TextView synopsisView = (TextView) findViewById(R.id.synopsisView);
         synopsisView.setText(passDetailsObject.getMovieOverview());
+
+        LoaderCallbacks<ArrayList<ArrayList<String>>> callback = MovieDetailsActivity.this;
+        Bundle bundleForLoader = new Bundle();
+        bundleForLoader.putString(MOVIE_ID_KEY, passDetailsObject.getMovieId());
+        getSupportLoaderManager().initLoader(DETAILS_LOADER_ID, bundleForLoader, callback);
     }
 
     public void addToFav(View view) {
@@ -52,8 +62,6 @@ public class MovieDetailsActivity extends AppCompatActivity {
         cv.put(favMoviesContract.favMoviesEntry.COLUMN_RELEASE_DATE, passDetailsObject.getReleaseDate());
         cv.put(favMoviesContract.favMoviesEntry.USER_RATING, passDetailsObject.getUserRating());
         cv.put(favMoviesContract.favMoviesEntry.MOVIE_ID, passDetailsObject.getMovieId());
-        movieDbHelper dbHelper= new movieDbHelper(this);
-        mDb = dbHelper.getWritableDatabase();
         Uri queryUri = favMoviesContract.favMoviesEntry.CONTENT_URI;
         queryUri = queryUri.buildUpon().appendPath(passDetailsObject.getMovieTitle()).build();
         Cursor c = getContentResolver().query(queryUri, null, null, null, null);
@@ -74,5 +82,63 @@ public class MovieDetailsActivity extends AppCompatActivity {
                     Toast.makeText(this, "Failed to add", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+
+    @Override
+    public Loader<ArrayList<ArrayList<String>>> onCreateLoader(int id, final Bundle args) {
+        return new AsyncTaskLoader<ArrayList<ArrayList<String>>>(this) {
+            //variable to cache data
+            ArrayList<ArrayList<String>> mData = null;
+            String movieId = args.getString(MOVIE_ID_KEY);
+            @Override
+            protected void onStartLoading() {
+                if (mData != null) {
+                    deliverResult(mData);
+                } else {
+                    forceLoad();
+                }
+            }
+            @Override
+            public ArrayList<ArrayList<String>> loadInBackground() {
+                ArrayList<ArrayList<String>> trailerAndReviewData = new ArrayList<ArrayList<String>>();
+                trailerAndReviewData = NetworkUtils.getTrailerAndReviews(movieId);
+                return trailerAndReviewData;
+            }
+            /**
+             * Sends the result of the load to the registered listener.
+             *
+             * @param data The result of the load
+             */
+            public void deliverResult(ArrayList<ArrayList<String>> data) {
+                mData = data;
+                super.deliverResult(data);
+            }
+        };
+    }
+
+    @Override
+    public void onLoadFinished(Loader<ArrayList<ArrayList<String>>> loader, ArrayList<ArrayList<String>> data) {
+        if (data != null) {
+            if (data.size() != 0) {
+                ArrayList<String> trailers = data.get(0);
+                ArrayList<String> reviews = data.get(1);
+                TextView textView = (TextView) findViewById(R.id.movieReviews);
+                if (reviews != null) {
+                    if (reviews.size() != 0) {
+                        for (int i = 0; i < reviews.size(); i++) {
+                            textView.append(reviews.get(i) + "\n*******************" + "\n\n");
+                        }
+                    }
+                }else {
+                    textView.setText(getString(R.string.noReview));
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onLoaderReset(Loader<ArrayList<ArrayList<String>>> loader) {
+
     }
 }
