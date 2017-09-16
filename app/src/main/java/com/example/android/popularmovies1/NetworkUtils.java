@@ -31,6 +31,8 @@ public class NetworkUtils {
     private static String MOVIES_BASE_URL = "https://api.themoviedb.org/3/movie/";
     private static String TRAILER_KEY = "trailer";
     private static String REVIEW_KEY = "review";
+    private static String YOUTUBE_BASE_URL = "https://www.youtube.com/watch";
+    final static String YOUTUBE_QUERY_PARAM = "v";
 
 /* this method build the query url*/
     public static URL buildUrl(String sortBy) {
@@ -210,5 +212,12 @@ public class NetworkUtils {
             Log.e("NetworkUtils", "Problem parsing JSON results", e);
         }
         return reviews;
+    }
+
+    public static Uri getYoutubeURIForKey(String trailerKey){
+        Uri builtUri = Uri.parse(YOUTUBE_BASE_URL).buildUpon()
+                .appendQueryParameter(YOUTUBE_QUERY_PARAM, trailerKey)
+                .build();
+        return builtUri;
     }
 }

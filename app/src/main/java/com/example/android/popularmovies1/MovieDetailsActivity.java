@@ -1,6 +1,7 @@
 package com.example.android.popularmovies1;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.support.v4.app.LoaderManager.LoaderCallbacks;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,12 +24,13 @@ import java.util.ArrayList;
 import static com.example.android.popularmovies1.MainActivity.passDetailsObject;
 
 public class MovieDetailsActivity extends AppCompatActivity implements
-        LoaderCallbacks<ArrayList<ArrayList<String>>>{
+        LoaderCallbacks<ArrayList<ArrayList<String>>>, TrailerAdapter.ListItemClickListener{
     private static String POSTER_BASE_URL = "https://image.tmdb.org/t/p/w500";
     private static String RELEASE_DATE = "Release Date: ";
     private static String USER_RATING ="User Rating: ";
     private static final int DETAILS_LOADER_ID = 1004;
     private static final String MOVIE_ID_KEY = "movieIdKey";
+    private static ArrayList<String> mTrailers = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +105,7 @@ public class MovieDetailsActivity extends AppCompatActivity implements
             }
             @Override
             public ArrayList<ArrayList<String>> loadInBackground() {
-                ArrayList<ArrayList<String>> trailerAndReviewData = new ArrayList<ArrayList<String>>();
+                ArrayList<ArrayList<String>> trailerAndReviewData;
                 trailerAndReviewData = NetworkUtils.getTrailerAndReviews(movieId);
                 return trailerAndReviewData;
             }
@@ -121,9 +125,10 @@ public class MovieDetailsActivity extends AppCompatActivity implements
     public void onLoadFinished(Loader<ArrayList<ArrayList<String>>> loader, ArrayList<ArrayList<String>> data) {
         if (data != null) {
             if (data.size() != 0) {
-                ArrayList<String> trailers = data.get(0);
+                mTrailers = data.get(0);
                 ArrayList<String> reviews = data.get(1);
                 TextView textView = (TextView) findViewById(R.id.movieReviews);
+                RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerView_trailer);
                 if (reviews != null) {
                     if (reviews.size() != 0) {
                         for (int i = 0; i < reviews.size(); i++) {
@@ -133,6 +138,19 @@ public class MovieDetailsActivity extends AppCompatActivity implements
                 }else {
                     textView.setText(getString(R.string.noReview));
                 }
+                // **********for trailers
+                if (mTrailers != null) {
+                    if (mTrailers.size() != 0) {
+                        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+                        recyclerView.setLayoutManager(layoutManager);
+                        recyclerView.setHasFixedSize(true);
+                        recyclerView.setAdapter(new TrailerAdapter(mTrailers.size(), this));
+                    }
+                }else {
+                    recyclerView.setVisibility(View.GONE);
+                    View view = findViewById(R.id.view2);
+                    view.setVisibility(View.GONE);
+                }
             }
         }
     }
@@ -140,5 +158,18 @@ public class MovieDetailsActivity extends AppCompatActivity implements
     @Override
     public void onLoaderReset(Loader<ArrayList<ArrayList<String>>> loader) {
 
+    }
+
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        openWebPage(mTrailers.get(clickedItemIndex));
+    }
+
+    public void openWebPage(String TrailerKey){
+        Uri webpage = NetworkUtils.getYoutubeURIForKey(TrailerKey);
+        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+        if(intent.resolveActivity(getPackageManager()) != null){
+            startActivity(intent);
+        }
     }
 }
