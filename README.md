@@ -7,4 +7,4 @@ Implicit and Explicit Intents, Loaders, Network connection, API integration, JSO
   which displays movie details, poster thumbnail, trailers and reviews. 
 •	User can sort the movies from the menu and even add movies to the local database as favorites.
 
-To run you will have to enter the movie db apikey
+To run you will have to enter the movie db apikey in NetworkUtils.java
