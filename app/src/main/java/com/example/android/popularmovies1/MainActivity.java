@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,10 +25,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView mEmptyStateTextView;
     public static movieDetails passDetailsObject;
     private static String sortBy = "popular";
+    private String GRID_VIEW_SCROLL_POSITION_KEY = "scroll_to";
+    private int scrollPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(savedInstanceState != null){
+            scrollPosition = savedInstanceState.getInt(GRID_VIEW_SCROLL_POSITION_KEY);
+        }
         setContentView(R.layout.activity_main);
         //setContentView(R.layout.tester);
         /* check if there is a network connection*/
@@ -43,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
             new movieQueryTask().execute(sortBy);
 
         }
-
     }
 
     private class movieQueryTask extends AsyncTask<String, Void, ArrayList<movieDetails>> {
@@ -74,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 movieGrid = (GridView) findViewById(R.id.movieGrid);
                 customAdapter adapter = new customAdapter(MainActivity.this, s);
                 movieGrid.setAdapter(adapter);
-
+                movieGrid.smoothScrollToPosition(scrollPosition);
                 movieGrid.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick (AdapterView < ? > parent, View view, int position, long id){
@@ -122,5 +127,13 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        int index = movieGrid.getFirstVisiblePosition();
+        outState.putInt(GRID_VIEW_SCROLL_POSITION_KEY, index);
+        Log.i("onSaved Instance", String.valueOf(index));
     }
 }

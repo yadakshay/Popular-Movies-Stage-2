@@ -13,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +32,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements
     private static final int DETAILS_LOADER_ID = 1004;
     private static final String MOVIE_ID_KEY = "movieIdKey";
     private static ArrayList<String> mTrailers = new ArrayList<>();
+    private static ScrollView mScrollView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
-
+        mScrollView = (ScrollView) findViewById(R.id.mainScroll);
         TextView textView = (TextView) findViewById(R.id.movieName);
         textView.setText(passDetailsObject.getMovieTitle());
 
@@ -171,5 +173,24 @@ public class MovieDetailsActivity extends AppCompatActivity implements
         if(intent.resolveActivity(getPackageManager()) != null){
             startActivity(intent);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putIntArray("ARTICLE_SCROLL_POSITION",
+                new int[]{ mScrollView.getScrollX(), mScrollView.getScrollY()});
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        final int[] position = savedInstanceState.getIntArray("ARTICLE_SCROLL_POSITION");
+        if(position != null)
+            mScrollView.post(new Runnable() {
+                public void run() {
+                    mScrollView.scrollTo(position[0], position[1]);
+                }
+            });
     }
 }

@@ -27,7 +27,7 @@ import java.util.Scanner;
 public class NetworkUtils {
 
     final static String PARAM_QUERY = "api_key";
-    final static String API_KEY = ""; //Enter your API key here
+    final static String API_KEY = "b4a74a2b2833f996408db276b3007cb7"; //Enter your API key here
     private static String MOVIES_BASE_URL = "https://api.themoviedb.org/3/movie/";
     private static String TRAILER_KEY = "trailer";
     private static String REVIEW_KEY = "review";

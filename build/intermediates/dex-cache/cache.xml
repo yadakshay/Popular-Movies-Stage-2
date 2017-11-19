@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\com.squareup.picasso\picasso\2.5.2\7446d06ec8d4f7ffcc53f1da37c95f200dcb9387\picasso-2.5.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_a69735fb31405abb6c5b972e1b2bb4f918f620e8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\abd4dae297f2c6d500218c7581a96f998ef20bac\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_a95f7db8c766281c91e56c0b3f4d9727f73de230.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\4c9989ac7c901c130f033c0c3d276ed9b5c8c9e5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_3a75bc395d5d41ee7e9667c22ee49f4b85e41721.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\427d2a1ea58ebd6c970b3355cd63647a79f69f66\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_1d7be79af6f8f9bcc86b6df3a34c7318cd20cea8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\94df50f881c6718b5f047a58a4b4509915d67798\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_f2fdaa0de495a738ff2591a6dbc138f3bbf71a8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\404e19d8c5a9ffa73c46c0f5931dc8517c161171\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_a1057ac0cddd0bdf71b24525a31a7b6f9666a81b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\4f475c8c902a00ea1c527625fdcad4050cce06f4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_b49ea0c7f3cebf2a77713518be9e338c83fb1c4e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.0\support-annotations-25.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.0_d94e434224a43740aa39c83f92a8a2ca50ed78b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\5a093baa7dc00ff19e5bc7632492642059391dfb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_d3c91e3f1a5852e99109ce3ea383d2c19cb2bf74.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\60f1d912699f0fe3d12d341241e8fc3d71f968bb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_88e5ede0eba9d028b9fd386d6a233de8f72704e8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\a38d497a32a5ac56ca8044efbae8bbc1d7667032\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_4fa8b7c4d4d1968dabcb205809cbf444b474621d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\6a2e7c2d8bbb4e65f8b3725b9ee0a1089ad07243\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_9d01ccf69dd946f79b0f8d53c0bb17f4592db6d9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_56cb9135bf1bd704eeaa78bb7e1de36312cfdd96.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\user\.android\build-cache\e28a7d704f6f361fb4656c87f8bc5010695b6e55\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="C:\Users\user\AndroidStudioProjects\Popular-Movies-Stage-2\app\build\intermediates\pre-dexed\debug\classes_484cd691c04adf4627549e7801d694b9288ee992.jar" />
+    </item>
+
+</items>
