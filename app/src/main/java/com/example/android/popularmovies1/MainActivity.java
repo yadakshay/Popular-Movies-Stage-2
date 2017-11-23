@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
             scrollPosition = savedInstanceState.getInt(GRID_VIEW_SCROLL_POSITION_KEY);
         }
         setContentView(R.layout.activity_main);
+
+        movieGrid = (GridView) findViewById(R.id.movieGrid);
         //setContentView(R.layout.tester);
         /* check if there is a network connection*/
         ConnectivityManager connectivityManager =
@@ -76,10 +78,10 @@ public class MainActivity extends AppCompatActivity {
             loading.setVisibility(View.GONE);
 
             if (s != null && !s.equals("")) {
-                movieGrid = (GridView) findViewById(R.id.movieGrid);
+              //  movieGrid = (GridView) findViewById(R.id.movieGrid);
                 customAdapter adapter = new customAdapter(MainActivity.this, s);
                 movieGrid.setAdapter(adapter);
-                movieGrid.smoothScrollToPosition(scrollPosition);
+                movieGrid.smoothScrollToPosition(scrollPosition); // scroll to the saved position
                 movieGrid.setOnItemClickListener(new AdapterView.OnItemClickListener(){
                     @Override
                     public void onItemClick (AdapterView < ? > parent, View view, int position, long id){
@@ -129,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+   @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         int index = movieGrid.getFirstVisiblePosition();
